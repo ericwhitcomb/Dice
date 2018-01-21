@@ -5,16 +5,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
-    EditText editNumber;
-    Button buttonClear;
+public class MainActivity extends AppCompatActivity {
 
     Button buttonD2;
     Button buttonD4;
@@ -32,16 +30,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        editNumber = (EditText) this.findViewById(R.id.editNumber);
-
-        buttonClear = (Button) this.findViewById(R.id.buttonClear);
-        buttonClear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editNumber.setText("");
-            }
-        });
 
         buttonD2 = (Button) this.findViewById((R.id.buttonD2));
         buttonD2.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +101,17 @@ public class MainActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_roll);
         dialog.setTitle(title);
         TextView tv = (TextView) dialog.findViewById(R.id.textNumber);
-        tv.setText(String.valueOf((int) (Math.random() * sides) + 1));
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        String s = "";
+        int total = 0;
+        for (int i = 0; i < 1; i++) {
+            int n = (int) (Math.random() * sides) + 1;
+            numbers.add(n);
+            total += n;
+            s = s + String.valueOf(n) + " ";
+        }
+        s = s + "= " + String.valueOf(total);
+        tv.setText(s);
         dialog.show();
     }
 }
