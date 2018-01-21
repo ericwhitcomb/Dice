@@ -8,11 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    Spinner spinner;
 
     Button buttonD2;
     Button buttonD4;
@@ -31,11 +34,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        spinner = (Spinner) this.findViewById(R.id.spinner);
+
         buttonD2 = (Button) this.findViewById((R.id.buttonD2));
         buttonD2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayDialog("D2 Roll", 2);
+                displayDialog("D2 Roll", 2, Integer.parseInt(spinner.getSelectedItem().toString()));
             }
         });
 
@@ -43,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         buttonD4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayDialog("D4 Roll", 4);
+                displayDialog("D4 Roll", 4, Integer.parseInt(spinner.getSelectedItem().toString()));
             }
         });
 
@@ -51,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         buttonD6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayDialog("D6 Roll", 6);
+                displayDialog("D6 Roll", 6, Integer.parseInt(spinner.getSelectedItem().toString()));
             }
         });
 
@@ -59,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         buttonD8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayDialog("D8 Roll", 8);
+                displayDialog("D8 Roll", 8, Integer.parseInt(spinner.getSelectedItem().toString()));
             }
         });
 
@@ -67,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         buttonD10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayDialog("D10 Roll", 10);
+                displayDialog("D10 Roll", 10, Integer.parseInt(spinner.getSelectedItem().toString()));
             }
         });
 
@@ -75,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         buttonD12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayDialog("D12 Roll", 12);
+                displayDialog("D12 Roll", 12, Integer.parseInt(spinner.getSelectedItem().toString()));
             }
         });
 
@@ -83,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         buttonD20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayDialog("D20 Roll", 20);
+                displayDialog("D20 Roll", 20, Integer.parseInt(spinner.getSelectedItem().toString()));
             }
         });
 
@@ -91,12 +96,12 @@ public class MainActivity extends AppCompatActivity {
         buttonD100.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayDialog("D100 Roll", 100);
+                displayDialog("D100 Roll", 100, Integer.parseInt(spinner.getSelectedItem().toString()));
             }
         });
     }
 
-    private void displayDialog(String title, int sides) {
+    private void displayDialog(String title, int sides, int count) {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_roll);
         dialog.setTitle(title);
@@ -104,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Integer> numbers = new ArrayList<Integer>();
         String s = "";
         int total = 0;
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < count; i++) {
             int n = (int) (Math.random() * sides) + 1;
             numbers.add(n);
             total += n;
