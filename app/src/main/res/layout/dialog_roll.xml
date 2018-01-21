@@ -2,14 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textNumber"
+        android:id="@+id/textNumbers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="16dp"
+        android:textAlignment="center"
         android:textSize="24sp" />
+
+    <TextView
+        android:background="#333333"
+        android:id="@+id/textTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:padding="16dp"
+        android:textAlignment="center"
+        android:textColor="#cccccc"
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

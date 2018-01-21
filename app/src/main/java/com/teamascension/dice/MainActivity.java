@@ -102,21 +102,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayDialog(String title, int sides, int count) {
+
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_roll);
-        dialog.setTitle(title);
-        TextView tv = (TextView) dialog.findViewById(R.id.textNumber);
+        dialog.setTitle(title + ":");
+
+        TextView textNumbers = (TextView) dialog.findViewById(R.id.textNumbers);
+        TextView textTotal = (TextView) dialog.findViewById(R.id.textTotal);
+
         ArrayList<Integer> numbers = new ArrayList<Integer>();
+        for (int i = 0; i < count; i++) {
+            numbers.add((int) (Math.random() * sides) + 1);
+        }
+
         String s = "";
         int total = 0;
         for (int i = 0; i < count; i++) {
             int n = (int) (Math.random() * sides) + 1;
-            numbers.add(n);
             total += n;
-            s = s + String.valueOf(n) + " ";
+            s = s + String.valueOf(n) + " + ";
         }
-        s = s + "= " + String.valueOf(total);
-        tv.setText(s);
+        s = s.substring(0, s.length()-3);
+        if (count > 1) {
+            textNumbers.setText(s);
+            textNumbers.setVisibility(View.VISIBLE);
+        } else {
+            textNumbers.setVisibility(View.INVISIBLE);
+        }
+        textTotal.setText(String.valueOf(total));
         dialog.show();
     }
 }
