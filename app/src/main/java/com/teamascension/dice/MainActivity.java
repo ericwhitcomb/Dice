@@ -110,11 +110,6 @@ public class MainActivity extends AppCompatActivity {
         TextView textNumbers = (TextView) dialog.findViewById(R.id.textNumbers);
         TextView textTotal = (TextView) dialog.findViewById(R.id.textTotal);
 
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
-        for (int i = 0; i < count; i++) {
-            numbers.add((int) (Math.random() * sides) + 1);
-        }
-
         String s = "";
         int total = 0;
         for (int i = 0; i < count; i++) {
